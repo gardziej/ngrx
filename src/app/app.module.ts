@@ -12,6 +12,7 @@ import { SportgroupsComponent } from './sportgroups/sportgroups.component';
 import { ParticipantsComponent } from './participants/participants.component';
 import { MarketComponent } from './market/market.component';
 import { RateButtonComponent } from './rate-button/rate-button.component';
+import { MatchesService } from './services/matches.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RateButtonComponent } from './rate-button/rate-button.component';
     ScoreComponent
   ],
   providers: [
-    WebSocketService
+    WebSocketService,
+    MatchesService
   ],
   bootstrap: [AppComponent]
 })
