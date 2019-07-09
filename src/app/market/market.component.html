@@ -1,0 +1,6 @@
+<div class="market" *ngIf="data.selections.length <= 3">
+  <ng-container *ngFor="let selection of data.selections">
+    <rate-button [data]="selection"></rate-button>
+  </ng-container>
+</div>
+

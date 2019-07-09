@@ -1,0 +1,9 @@
+<span 
+  class="rate-button"
+  [class.is-suspended]="data.isSuspended">
+
+  <i class="arrow up" *ngIf="data.isIncreased"></i>
+  <i class="arrow down" *ngIf="data.isDecreased"></i>
+
+  {{ data.rate.decimal }}
+</span>  
