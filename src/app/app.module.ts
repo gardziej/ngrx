@@ -13,6 +13,10 @@ import { ParticipantsComponent } from './participants/participants.component';
 import { MarketComponent } from './market/market.component';
 import { RateButtonComponent } from './rate-button/rate-button.component';
 import { MatchesService } from './services/matches.service';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './app.effects';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,15 @@ import { MatchesService } from './services/matches.service';
     BrowserModule,
     CommonModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+    EffectsModule.forRoot([AppEffects])
   ],
   exports: [
     ScoreComponent
