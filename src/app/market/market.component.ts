@@ -13,7 +13,6 @@ export class MarketComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('PRG: market', this.data); // TODO remove this
   }
 
 }

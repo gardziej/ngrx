@@ -12,6 +12,10 @@ export class WebSocketService {
     this.socket = new WebSocket(this.wsUrl);
     this.socket.onopen = (event: Event) => {
       this.socket.send('{"action":"subscribe","channel":"matches","params":{"filter":{"_sports_group":"live"}}}');
+      this.socket.send('{"action":"subscribe","channel":"matches","params":{"filter":{"_sports_group":1}}}');
+      this.socket.send('{"action":"subscribe","channel":"matches","params":{"filter":{"_sports_group":5}}}');
+      this.socket.send('{"action":"subscribe","channel":"matches","params":{"filter":{"_sports_group":10}}}');
+      this.socket.send('{"action":"subscribe","channel":"matches","params":{"filter":{"_sports_group":71}}}');
      };
     this.socket.onmessage = (event) => {
       if (event.data) {

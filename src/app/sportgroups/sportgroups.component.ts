@@ -10,9 +10,6 @@ export class SportgroupsComponent implements OnInit {
   @Input() data;
 
   ngOnInit() {
-    setTimeout(() => {
-      console.log('PRG: this.data', this.data); // TODO remove this
-    }, 2000);
   }
 
 }

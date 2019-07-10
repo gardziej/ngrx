@@ -1,15 +1,56 @@
-<div class="container">
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <ng-container>
+          <div class="col-1">
+            top live
+          </div>
+          <div class="col-5">
+            sum
+          </div>
+          <div class="col-6">
+            <span *ngFor="let item of counterArray | keyvalue">
+              {{item.key}}: <b>{{item.value}}</b>, 
+            </span>  
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="row" *ngFor="let match of matchArray">
+        <ng-container *ngIf="match[0] && isIntopLive(match[0]) === 'y'">
+          <div class="col-1">
+            {{ isIntopLive(match[0]) }}
+          </div>
+          <div class="col-5">
+            id: {{ match[0] }}
+            <participants *ngIf="getData(match[0]) && getData(match[0]).participants" [data]="getData(match[0]).participants"></participants>
+            <sportgroups *ngIf="getData(match[0]) && getData(match[0]).sportsGroups" [data]="getData(match[0]).sportsGroups"></sportgroups>
+          </div>
+          <div class="col-6">
+            <span *ngFor="let item of match[1] | keyvalue">
+              {{item.key}}: <b>{{item.value}}</b>, 
+            </span>  
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
   <div class="card" *ngFor="let match of matches">
     <div class="card-body">
       <div class="row">
-
         <div class="col-1 center">
           <span class="badge badge-secondary">{{ match.id }}</span>
         </div>
         <div class="col-1 center">
           <score [data]="match?.stats?.score"></score>
         </div>
-        
         <div class="col-6">
           <sportgroups [data]="match.sportsGroups"></sportgroups>
           <participants [data]="match.participants"></participants>
@@ -20,6 +61,6 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <router-outlet></router-outlet>
