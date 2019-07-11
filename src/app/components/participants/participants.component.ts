@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Participants } from '../interfaces/participants.interface';
+import { Participants } from '../../interfaces/participants.interface';
 
 @Component({
   selector: 'participants',

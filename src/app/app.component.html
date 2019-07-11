@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="card" *ngFor="let match of matches">
+<div class="container" *ngIf="{ matches: matches$ | async } as data">
+  <div class="card" *ngFor="let match of data.matches">
     <div class="card-body">
       <div class="row">
 
@@ -7,15 +7,15 @@
           <span class="badge badge-secondary">{{ match.id }}</span>
         </div>
         <div class="col-1 center">
-          <score [data]="match?.stats?.score"></score>
+          <!-- <score [data]="match?.stats?.score"></score> -->
         </div>
         
         <div class="col-6">
-          <sportgroups [data]="match.sportsGroups"></sportgroups>
+          <!-- <sportgroups [data]="match.sportsGroups"></sportgroups> -->
           <participants [data]="match.participants"></participants>
         </div>
         <div class="col-4">
-          <market *ngIf="match.markets.length > 0" [data]="match.markets[0]"></market>
+          <!-- <market *ngIf="match.markets.length > 0" [data]="match.markets[0]"></market> -->
         </div>
       </div>
     </div>

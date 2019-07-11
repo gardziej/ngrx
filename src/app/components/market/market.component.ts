@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Market } from '../interfaces/market.interface';
+import { Market } from '../../interfaces/market.interface';
 
 @Component({
   selector: 'market',

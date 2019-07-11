@@ -1,34 +1,29 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WebSocketService } from './services/websocket.service';
-import { HttpClient } from '@angular/common/http';
+import { Match } from './interfaces/match.interface';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { State } from './store/reducers';
+import * as MatchActions from './store/actions/match.actions';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
 
-// https://app.lvbet.pl/_api/v1/offer/matches/?is_live=true
-
-  public matches = [];
+  public matches$: Observable<Match[]>;
 
   constructor(
     private webSocketService: WebSocketService,
-    private http: HttpClient
+    private store: Store<State>
     ) {
-    this.webSocketService.message$.subscribe(data => {
-      if (data.id && !this.matches.some(match => match.id === data.id) && this.matches.length < 10) {
-        this.addNewData(data);
-      }
-    });
+    this.store.dispatch(MatchActions.getLiveMatches());
   }
 
-  addNewData(data: any) {
-    this.http.get('https://app.lvbet.pl/_api/v1/offer/matches/full/' + data.id).subscribe((incoming: any) => {
-      this.matches.push(incoming);
-      console.log('PRG: incoming', incoming); // TODO remove this
-    });
+  ngOnInit(): void {
+    this.matches$ = this.store.pipe(select('matches'));
   }
 
   ngOnDestroy(): void {

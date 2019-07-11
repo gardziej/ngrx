@@ -7,16 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WebSocketService } from './services/websocket.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ScoreComponent } from './score/score.component';
-import { SportgroupsComponent } from './sportgroups/sportgroups.component';
-import { ParticipantsComponent } from './participants/participants.component';
-import { MarketComponent } from './market/market.component';
-import { RateButtonComponent } from './rate-button/rate-button.component';
+import { ScoreComponent } from './components/score/score.component';
+import { SportgroupsComponent } from './components/sportgroups/sportgroups.component';
+import { ParticipantsComponent } from './components/participants/participants.component';
+import { MarketComponent } from './components/market/market.component';
+import { RateButtonComponent } from './components/rate-button/rate-button.component';
 import { MatchesService } from './services/matches.service';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { reducers, metaReducers } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './app.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { MatchEffects } from './store/effects/match.effects';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { AppEffects } from './app.effects';
         strictActionImmutability: true
       }
     }),
-    EffectsModule.forRoot([AppEffects])
+    EffectsModule.forRoot([MatchEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   exports: [
     ScoreComponent

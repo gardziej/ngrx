@@ -10,15 +10,15 @@ export class WebSocketService {
 
   constructor() {
     this.socket = new WebSocket(this.wsUrl);
-    this.socket.onopen = (event: Event) => {
-      this.socket.send('{"action":"subscribe","channel":"matches","params":{"filter":{"_sports_group":"live"}}}');
-     };
-    this.socket.onmessage = (event) => {
-      if (event.data) {
-        const data = JSON.parse(event.data);
-        this.message$.next(data);
-      }
-    };
+    // this.socket.onopen = (event: Event) => {
+    //   this.socket.send('{"action":"subscribe","channel":"matches","params":{"filter":{"_sports_group":"live"}}}');
+    //  };
+    // this.socket.onmessage = (event) => {
+    //   if (event.data) {
+    //     const data = JSON.parse(event.data);
+    //     this.message$.next(data);
+    //   }
+    // };
   }
 
   close() {
