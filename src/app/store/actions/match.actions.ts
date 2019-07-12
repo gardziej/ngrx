@@ -3,7 +3,7 @@ import { Match } from '../../interfaces/match.interface';
 
 export const addMatches = createAction(
   '[Match] Add Matches',
-  (props<{ payload: Match[] }>())
+  (props<{ matches: Match[] }>())
 );
 
 export const getLiveMatches = createAction(

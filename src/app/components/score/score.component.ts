@@ -1,4 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { StoreState } from 'src/app/store/reducers';
+
+import * as fromStats from '../../store/reducers/stats.reducer';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'score',
@@ -7,13 +12,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ScoreComponent implements OnInit {
 
-  public score: string[];
+  public score$: Observable<any>;
 
-  @Input() set data(value: string) {
-      this.score = value ? value.split(':') : ['-', '-'];
+  @Input() id: number;
+
+  constructor(
+    private store: Store<StoreState>
+    ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.score$ = this.store.pipe(
+      select(fromStats.selectScore, { id: this.id })
+    );
   }
 
 }

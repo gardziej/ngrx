@@ -1,0 +1,4 @@
+<ng-container *ngIf="{ currentMinute: currentMinute$ | async } as data">
+  <span class="badge badge-alert">{{ data.currentMinute }}'</span>
+</ng-container>
+

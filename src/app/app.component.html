@@ -5,9 +5,10 @@
 
         <div class="col-1 center">
           <span class="badge badge-secondary">{{ match.id }}</span>
+          <time [id]="match.id"></time>
         </div>
         <div class="col-1 center">
-          <score [data]="match.stats?.score"></score>
+          <score [id]="match.id"></score>
         </div>
         
         <div class="col-4">
@@ -15,13 +16,13 @@
           <participants [data]="match.participants"></participants>
         </div>
         <div class="col-2">
-          <market *ngIf="match.primaryMarkets.length > 0" [data]="match.primaryMarkets[0]"></market>
+          <market *ngIf="match.primaryMarketsIds.length > 0" [id]="match.primaryMarketsIds[0]"></market>
         </div>
         <div class="col-2">
-          <market *ngIf="match.primaryMarkets.length > 1" [data]="match.primaryMarkets[1]"></market>
+          <market *ngIf="match.primaryMarketsIds.length > 1" [id]="match.primaryMarketsIds[1]"></market>
         </div>
         <div class="col-2">
-          <market *ngIf="match.primaryMarkets.length > 2" [data]="match.primaryMarkets[2]"></market>
+          <market *ngIf="match.primaryMarketsIds.length > 2" [id]="match.primaryMarketsIds[2]"></market>
         </div>
       </div>
     </div>

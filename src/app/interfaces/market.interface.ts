@@ -1,5 +1,7 @@
 import { Selection } from './selection.interface';
 
 export interface Market {
-  selections: Selection[];
+  id: number;
+  selections?: Selection[];
+  selectionsIds: number[];
 }

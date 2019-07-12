@@ -19,11 +19,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { MatchEffects } from './store/effects/match.effects';
+import { TimeComponent } from './components/time/time.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScoreComponent,
+    TimeComponent,
     SportgroupsComponent,
     ParticipantsComponent,
     MarketComponent,

@@ -1,4 +1,11 @@
-<span 
+<ng-container *ngIf="{ selection: selection$ | async } as data">
+  <span 
+    class="rate-button">
+    {{ data.selection.rate.decimal }}
+  </span>  
+</ng-container>
+
+<!-- <span 
   class="rate-button"
   [class.is-suspended]="data.isSuspended">
 
@@ -6,4 +13,4 @@
   <i class="arrow down" *ngIf="data.isDecreased"></i>
 
   {{ data.selection.rate.decimal }}
-</span>  
+</span>   -->

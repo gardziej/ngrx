@@ -1,5 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RateButtonData } from 'src/app/interfaces/rateButtonData.interface';
+import { Observable } from 'rxjs';
+
+import * as fromSelections from '../../store/reducers/selection.reducer';
+
+import { Store, select } from '@ngrx/store';
+import { StoreState } from 'src/app/store/reducers';
 
 @Component({
   selector: 'rate-button',
@@ -8,11 +13,22 @@ import { RateButtonData } from 'src/app/interfaces/rateButtonData.interface';
 })
 export class RateButtonComponent implements OnInit {
 
-  @Input() data: RateButtonData;
+  public selection$: Observable<any>; // TODO any
 
-  constructor() { }
+  @Input() id: number;
 
-  ngOnInit() {
+  constructor(
+    private store: Store<StoreState>
+    ) {
+  }
+
+  ngOnInit(): void {
+    this.selection$ = this.store.pipe(
+      select(fromSelections.selectSelection, { id: this.id })
+    );
+    this.selection$.subscribe(x => {
+      console.log('PRG: x', x); // TODO remove this
+    });
   }
 
 }

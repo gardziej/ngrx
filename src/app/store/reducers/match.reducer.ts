@@ -1,27 +1,34 @@
-import { Match } from '../../interfaces/match.interface';
-import { createReducer, on, Action } from '@ngrx/store';
-import * as MatchActions from '../actions/match.actions';
-import * as WebSocketActions from '../actions/ws.actions';
-import { Participants } from 'src/app/interfaces/participants.interface';
-const initialState: Match[] = [];
+import { createReducer, on, createFeatureSelector } from '@ngrx/store';
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-const updateMatch = (state, action) => {
-  return state.map((match: Match) => {
-    if (match.id === action.payload.id) {
-      const newMatch = { ...match, stats: action.payload.stats, primaryMarkets: action.payload.primaryMarkets };
-      return newMatch;
-    }
-    return match;
-  });
+import { Match } from '../../interfaces/match.interface';
+import * as MatchActions from '../actions/match.actions';
+
+export interface State extends EntityState<Match> {
+}
+
+const sortByRank = (matchA: Match, matchB: Match) => {
+  return matchB.rank - matchA.rank;
 };
 
-const reducer = createReducer(
+export const adapter: EntityAdapter<Match> = createEntityAdapter<Match>({
+  sortComparer: sortByRank
+});
+
+export const initialState: State = adapter.getInitialState();
+
+export const matchesReducer = createReducer(
   initialState,
-  on(MatchActions.addMatches, (state, action) => ([ ...state, ...action.payload ])),
-  on(WebSocketActions.recivedWebSocketMatchData, updateMatch)
+  on(MatchActions.addMatches, (state, { matches }) => {
+    return adapter.addMany(matches, state);
+  })
 );
 
+export const getMatchState = createFeatureSelector<State>('matches');
 
-export function matchesReducer(state, action: Action) {
-  return reducer(state, action);
-}
+export const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal,
+} = adapter.getSelectors(getMatchState);

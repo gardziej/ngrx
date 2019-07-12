@@ -1,1 +1,4 @@
-<span class="badge badge-primary">{{ score[0] }}</span> - <span class="badge badge-primary">{{ score[1] }}</span>
+<ng-container *ngIf="{ score: score$ | async } as data">
+  <span class="badge badge-primary">{{ data.score[0] }}</span>
+  - <span class="badge badge-primary">{{ data.score[1] }}</span>
+</ng-container>

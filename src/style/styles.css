@@ -43,18 +43,14 @@ ol.sportsGroups li:not(:last-child):after {
 }
 
 .market {
-  display: inline-flex; 
-  flex-direction: row;
-  justify-content: space-evenly;
   width: 100%;
 }
 
 .rate-button {
   text-align: center;
-  display: block;
+  display: inline-block;
   border: 1px solid black;
   padding: 2px 5px;
-  flex: 1;
   min-width: 70px;
   background-color: #aaaaaa;
 }
@@ -78,4 +74,16 @@ ol.sportsGroups li:not(:last-child):after {
 .arrow.down {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+
+.col-d-4 {
+  width: 33%;
+  float: left;
+  text-align: center;
+}
+
+.col-d-6 {
+  width: 50%;
+  float: left;
+  text-align: center;
 }
