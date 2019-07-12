@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { RateButtonData } from 'src/app/interfaces/rateButtonData.interface';
 
 @Component({
   selector: 'rate-button',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RateButtonComponent implements OnInit {
 
-  @Input() data: Selection;
+  @Input() data: RateButtonData;
 
   constructor() { }
 

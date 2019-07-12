@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Market } from '../../interfaces/market.interface';
+import { RateButtonData } from 'src/app/interfaces/rateButtonData.interface';
+import { Selection } from 'src/app/interfaces/selection.interface';
 
 @Component({
   selector: 'market',
@@ -8,12 +10,24 @@ import { Market } from '../../interfaces/market.interface';
 })
 export class MarketComponent implements OnInit {
 
-  @Input() data: Market;
+  public rateButtonsData: RateButtonData[] = [];
+
+  @Input() set data(market: Market) {
+    this.rateButtonsData = market.selections.map((selection: Selection, index: number) => ({
+      selection,
+      isIncreased: (this.rateButtonsData[index] && this.rateButtonsData[index].selection && this.rateButtonsData[index].selection.rate.decimal < selection.rate.decimal),
+      isDecreased: (this.rateButtonsData[index] && this.rateButtonsData[index].selection && this.rateButtonsData[index].selection.rate.decimal > selection.rate.decimal)
+    }));
+  }
+
 
   constructor() { }
 
   ngOnInit() {
-    console.log('PRG: market', this.data); // TODO remove this
+  }
+
+  rateButtonsTrackBy(index: number): number {
+    return index;
   }
 
 }

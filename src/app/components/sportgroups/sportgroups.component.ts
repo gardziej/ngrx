@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { SportsGroup } from 'src/app/interfaces/sportsGroup.interface';
 
 @Component({
   selector: 'sportgroups',
@@ -7,12 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SportgroupsComponent implements OnInit {
 
-  @Input() data;
+  @Input() data: SportsGroup[];
 
   ngOnInit() {
-    setTimeout(() => {
-      console.log('PRG: this.data', this.data); // TODO remove this
-    }, 2000);
   }
 
 }

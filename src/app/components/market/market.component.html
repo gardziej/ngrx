@@ -1,6 +1,9 @@
-<div class="market" *ngIf="data.selections.length <= 3">
-  <ng-container *ngFor="let selection of data.selections">
-    <rate-button [data]="selection"></rate-button>
+<div class="market" *ngIf="rateButtonsData.length <= 3">
+  <ng-container *ngFor="let rateButtonData of rateButtonsData; let i = index; trackBy: rateButtonsTrackBy">
+    <div
+      [class.col-d-6]="rateButtonsData.length === 2"
+      [class.col-d-4]="rateButtonsData.length === 3">
+      <rate-button [data]="rateButtonData"></rate-button>
+    </div>
   </ng-container>
 </div>
-

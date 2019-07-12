@@ -9,10 +9,11 @@ export class ScoreComponent implements OnInit {
 
   public score: string[];
 
-  @Input() data: string = '0:0';
+  @Input() set data(value: string) {
+      this.score = value ? value.split(':') : ['-', '-'];
+  }
 
   ngOnInit() {
-    this.score = this.data.split(':');
   }
 
 }

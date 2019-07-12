@@ -26,6 +26,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.matches$ = this.store.pipe(select('matches'));
   }
 
+  public matchTrackBy(index: number, item: Match): number {
+    return item.id;
+  }
+
   ngOnDestroy(): void {
     this.webSocketService.close();
   }
