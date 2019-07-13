@@ -18,8 +18,8 @@ export const statsReducer = createReducer(
   on(StatsActions.addStats, (state, { stats }) => {
     return adapter.addMany(stats, state);
   }),
-  on(StatsActions.upsertStats, (state, { stats }) => {
-    return adapter.upsertMany(stats, state);
+  on(StatsActions.updateStats, (state, { stats }) => {
+    return adapter.updateOne(stats, state);
   })
 );
 
@@ -32,10 +32,17 @@ export const {
   selectTotal,
 } = adapter.getSelectors(getStatsState);
 
+export const selectStats = createSelector(
+  getStatsState,
+  (state: State, props: { id: number }) => {
+    return state.entities[props.id] ? state.entities[props.id] : null;
+  }
+);
+
 export const selectScore = createSelector(
   getStatsState,
   (state: State, props: { id: number }) => {
-    return state.entities[props.id] ? state.entities[props.id].score.split(':'): [0, 0];
+    return state.entities[props.id] ? state.entities[props.id].score.split(':') : [0, 0];
   }
 );
 

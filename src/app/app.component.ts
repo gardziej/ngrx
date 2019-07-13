@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { WebSocketService } from './services/websocket.service';
 import { Match } from './interfaces/match.interface';
 import { Observable } from 'rxjs';
@@ -6,9 +6,6 @@ import { Store } from '@ngrx/store';
 import { StoreState } from './store/reducers';
 import * as MatchActions from './store/actions/match.actions';
 import * as fromMatch from './store/reducers/match.reducer';
-
-import * as StatsActions from './store/actions/stats.actions';
-
 
 @Component({
   selector: 'app-root',

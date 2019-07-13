@@ -16,8 +16,8 @@ export const selectionsReducer = createReducer(
   on(SelectionsActions.addSelections, (state, { selections }) => {
     return adapter.addMany(selections, state);
   }),
-  on(SelectionsActions.upsertSelections, (state, { selections }) => {
-    return adapter.upsertMany(selections, state);
+  on(SelectionsActions.updateSelection, (state, { selection }) => {
+    return adapter.updateOne(selection, state);
   })
 );
 

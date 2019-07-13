@@ -1,8 +1,7 @@
 <div class="container-fluid" *ngIf="{ matches: matches$ | async } as data">
-  <div class="card" *ngFor="let match of data.matches; trackBy: matchTrackBy">
+  <div class="card">
     <div class="card-body">
-      <div class="row">
-
+      <div class="row" *ngFor="let match of data.matches; trackBy: matchTrackBy">
         <div class="col-1 center">
           <span class="badge badge-secondary">{{ match.id }}</span>
           <time [id]="match.id"></time>

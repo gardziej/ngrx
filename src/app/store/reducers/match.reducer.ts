@@ -1,4 +1,4 @@
-import { createReducer, on, createFeatureSelector } from '@ngrx/store';
+import { createReducer, on, createFeatureSelector, createSelector } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import { Match } from '../../interfaces/match.interface';
@@ -21,6 +21,9 @@ export const matchesReducer = createReducer(
   initialState,
   on(MatchActions.addMatches, (state, { matches }) => {
     return adapter.addMany(matches, state);
+  }),
+  on(MatchActions.updateMatch, (state, { match }) => {
+    return adapter.updateOne(match, state);
   })
 );
 
@@ -32,3 +35,10 @@ export const {
   selectAll,
   selectTotal,
 } = adapter.getSelectors(getMatchState);
+
+export const selectMatch = createSelector(
+  getMatchState,
+  (state: State, props: { id: number }) => {
+    return state.entities[props.id];
+  }
+);

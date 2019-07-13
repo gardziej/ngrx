@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Match } from '../../interfaces/match.interface';
+import { Update } from '@ngrx/entity';
 
 export const addMatches = createAction(
   '[Match] Add Matches',
@@ -12,5 +13,5 @@ export const getLiveMatches = createAction(
 
 export const updateMatch = createAction(
   '[Match] Update Match',
-  props<{ payload: Match }>()
+  props<{ match: Update<Match> }>()
 );

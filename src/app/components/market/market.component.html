@@ -1,20 +1,11 @@
-<!-- <div class="market" *ngIf="rateButtonsData.length <= 3">
-  <ng-container *ngFor="let rateButtonData of rateButtonsData; let i = index; trackBy: rateButtonsTrackBy">
-    <div
-      [class.col-d-6]="rateButtonsData.length === 2"
-      [class.col-d-4]="rateButtonsData.length === 3">
-      <rate-button [data]="rateButtonData"></rate-button>
-    </div>
-  </ng-container>
-</div> -->
-
-
 <ng-container *ngIf="{ selectionsIds: selectionsIds$ | async } as data">
-  <ng-container *ngFor="let selectionId of data.selectionsIds; let i = index; trackBy: rateButtonsTrackBy">
-    <div
-      [class.col-d-6]="data.selectionsIds.length === 2"
-      [class.col-d-4]="data.selectionsIds.length === 3">
-      <rate-button [id]="selectionId"></rate-button>
-    </div>
+  <ng-container *ngIf="data.selectionsIds">
+    <ng-container *ngFor="let selectionId of data.selectionsIds; let i = index; trackBy: rateButtonsTrackBy">
+      <div
+        [class.col-d-6]="data.selectionsIds.length === 2"
+        [class.col-d-4]="data.selectionsIds.length === 3">
+        <rate-button [id]="selectionId"></rate-button>
+      </div>
+    </ng-container>
   </ng-container>
 </ng-container>

@@ -9,6 +9,10 @@ body {
   background-color: #bdbdbd !important;
 }
 
+.card-body .row {
+  margin-bottom: 10px;
+}
+
 .center {
   text-align: center;
 }

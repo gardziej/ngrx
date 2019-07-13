@@ -26,9 +26,6 @@ export class RateButtonComponent implements OnInit {
     this.selection$ = this.store.pipe(
       select(fromSelections.selectSelection, { id: this.id })
     );
-    this.selection$.subscribe(x => {
-      console.log('PRG: x', x); // TODO remove this
-    });
   }
 
 }
