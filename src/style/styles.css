@@ -91,3 +91,11 @@ ol.sportsGroups li:not(:last-child):after {
   float: left;
   text-align: center;
 }
+
+.isSuspended {
+  opacity: 0.2;
+}
+
+.isHidden {
+  display: none;
+}

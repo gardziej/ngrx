@@ -20,6 +20,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { MatchEffects } from './store/effects/match.effects';
 import { TimeComponent } from './components/time/time.component';
+import { MatchComponent } from './components/match/match.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TimeComponent } from './components/time/time.component';
     SportgroupsComponent,
     ParticipantsComponent,
     MarketComponent,
+    MatchComponent,
     RateButtonComponent
   ],
   imports: [
@@ -44,7 +46,7 @@ import { TimeComponent } from './components/time/time.component';
       }
     }),
     EffectsModule.forRoot([MatchEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 250, logOnly: environment.production })
   ],
   exports: [
     ScoreComponent

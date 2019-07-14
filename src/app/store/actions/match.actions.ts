@@ -11,6 +11,11 @@ export const getLiveMatches = createAction(
   '[Match] Get Live Matches'
 );
 
+export const incomingNewMatches = createAction(
+  '[Match] Incoming New Matches',
+  (props<{ matches: Match[] }>())
+);
+
 export const updateMatch = createAction(
   '[Match] Update Match',
   props<{ match: Update<Match> }>()

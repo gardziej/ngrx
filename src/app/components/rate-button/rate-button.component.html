@@ -1,5 +1,6 @@
 <ng-container *ngIf="{ selection: selection$ | async } as data">
   <span 
+    [class.isSuspended]="data.selection.isSuspended"
     class="rate-button">
     {{ data.selection.rate.decimal }}
   </span>  

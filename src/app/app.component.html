@@ -1,29 +1,7 @@
 <div class="container-fluid" *ngIf="{ matches: matches$ | async } as data">
   <div class="card">
     <div class="card-body">
-      <div class="row" *ngFor="let match of data.matches; trackBy: matchTrackBy">
-        <div class="col-1 center">
-          <span class="badge badge-secondary">{{ match.id }}</span>
-          <time [id]="match.id"></time>
-        </div>
-        <div class="col-1 center">
-          <score [id]="match.id"></score>
-        </div>
-        
-        <div class="col-4">
-          <sportgroups [data]="match.sportsGroups"></sportgroups>
-          <participants [data]="match.participants"></participants>
-        </div>
-        <div class="col-2">
-          <market *ngIf="match.primaryMarketsIds.length > 0" [id]="match.primaryMarketsIds[0]"></market>
-        </div>
-        <div class="col-2">
-          <market *ngIf="match.primaryMarketsIds.length > 1" [id]="match.primaryMarketsIds[1]"></market>
-        </div>
-        <div class="col-2">
-          <market *ngIf="match.primaryMarketsIds.length > 2" [id]="match.primaryMarketsIds[2]"></market>
-        </div>
-      </div>
+      <match *ngFor="let match of data.matches" [id]="match.id"></match>
     </div>
   </div>
 </div>

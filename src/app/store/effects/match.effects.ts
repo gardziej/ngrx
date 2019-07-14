@@ -19,45 +19,12 @@ export class MatchEffects {
     ofType(MatchActions.getLiveMatches),
     switchMap(() => this.matchesService.getLiveMatches()),
     switchMap((matches: Match[]) => {
-
-      const [primaryMarkets, selections]: [Market[], Selection[]] = matches.reduce((accumulator: [Market[], Selection[]], match: Match) => {
-        accumulator[0].push(
-          ...match.primaryMarkets.map(
-            (market: Market) => (
-              {
-                id: market.id,
-                selectionsIds: market.selections.map((selection: Selection) => {
-                  accumulator[1].push(selection);
-                  return selection.id;
-                })
-              })).concat()
-          );
-        return accumulator;
-      }, [[], []]);
-
-      return [
-        MatchActions.addMatches({ matches: matches.map((match: Match) => ({
-          id: match.id,
-          rank: match.rank,
-          participants: match.participants,
-          sportsGroups: match.sportsGroups,
-          primaryMarketsIds: match.primaryMarkets.map((market: Market) => market.id)
-        })) }),
-
-        StatsActions.addStats({ stats: matches.map((match: Match) => ({
-          eventId: match.stats.eventId,
-          currentMinute: match.stats.currentMinute,
-          score: match.stats.score
-        })) }),
-
-        PrimaryMarketsActions.addPrimaryMarkets({ primaryMarkets }),
-
-        SelectionsActions.addSelections({ selections })
-      ];
+      return this.matchesService.getNewMatchesActions(matches);
     })
   ));
 
   constructor(
     private actions$: Actions,
     private matchesService: MatchesService) {}
+
 }

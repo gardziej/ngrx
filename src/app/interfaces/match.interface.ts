@@ -8,6 +8,10 @@ export interface Match {
   rank: number;
   participants: Participants;
   sportsGroups: SportsGroup;
+  isLive: boolean;
+  isVisible: boolean;
+  isSuspended: boolean;
+  marketsCount: number;
 
   primaryMarketsIds: number[];
 

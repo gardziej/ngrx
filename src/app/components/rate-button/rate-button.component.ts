@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import * as fromSelections from '../../store/reducers/selection.reducer';
@@ -9,7 +9,8 @@ import { StoreState } from 'src/app/store/reducers';
 @Component({
   selector: 'rate-button',
   templateUrl: './rate-button.component.html',
-  styleUrls: ['./rate-button.component.css']
+  styleUrls: ['./rate-button.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RateButtonComponent implements OnInit {
 

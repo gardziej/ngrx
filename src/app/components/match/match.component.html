@@ -1,0 +1,33 @@
+<ng-container *ngIf="{ match: match$ | async } as data">
+  <div
+    [class.isHidden]="!data.match.isVisible || !data.match.isLive"
+    class="row">
+    <div class="col-1 center">
+      <span class="badge badge-secondary">{{ data.match.id }}</span>
+      <time [id]="data.match.id"></time>
+    </div>
+    <div class="col-1 center">
+      <score [id]="data.match.id"></score>
+    </div>
+
+    <div class="col-3">
+      <sportgroups [data]="data.match.sportsGroups"></sportgroups>
+      <participants [data]="data.match.participants"></participants>
+    </div>
+    <div class="col-2" [class.isSuspended]="data.match.isSuspended">
+      <market
+        *ngIf="data.match.primaryMarketsIds.length > 0" 
+        [id]="data.match.primaryMarketsIds[0]">
+      </market>
+    </div>
+    <div class="col-2" [class.isSuspended]="data.match.isSuspended">
+      <market *ngIf="data.match.primaryMarketsIds.length > 1" [id]="data.match.primaryMarketsIds[1]"></market>
+    </div>
+    <div class="col-2" [class.isSuspended]="data.match.isSuspended">
+      <market *ngIf="data.match.primaryMarketsIds.length > 2" [id]="data.match.primaryMarketsIds[2]"></market>
+    </div>
+    <div class="col-1">
+      +{{ data.match.marketsCount }}
+    </div>
+  </div>
+</ng-container>

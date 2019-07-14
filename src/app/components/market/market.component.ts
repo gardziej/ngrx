@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import * as fromPrimaryMarkets from '../../store/reducers/primaryMarkets.reducer';
 
@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'market',
   templateUrl: './market.component.html',
-  styleUrls: ['./market.component.css']
+  styleUrls: ['./market.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarketComponent implements OnInit {
 
