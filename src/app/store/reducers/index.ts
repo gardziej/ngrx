@@ -1,4 +1,4 @@
-import { ActionReducerMap, MetaReducer } from '@ngrx/store';
+import { ActionReducerMap, MetaReducer, Action } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
 import { matchesReducer } from './match.reducer';
 import { Match } from '../../interfaces/match.interface';
@@ -9,6 +9,7 @@ import { primaryMarketsReducer } from './primaryMarkets.reducer';
 import { Market } from 'src/app/interfaces/market.interface';
 import { Selection } from 'src/app/interfaces/selection.interface';
 import { selectionsReducer } from './selection.reducer';
+import { InjectionToken } from '@angular/core';
 
 export interface StoreState {
   matches: EntityState<Match>;
@@ -17,11 +18,15 @@ export interface StoreState {
   selections: EntityState<Selection>;
 }
 
-export const reducers: ActionReducerMap<StoreState> = {
-  matches: matchesReducer,
-  stats: statsReducer,
-  primaryMarkets: primaryMarketsReducer,
-  selections: selectionsReducer
-};
+export const ROOT_REDUCERS = new InjectionToken<
+  ActionReducerMap<StoreState, Action>
+  >('Root reducers token', {
+    factory: () => ({
+    matches: matchesReducer,
+    stats: statsReducer,
+    primaryMarkets: primaryMarketsReducer,
+    selections: selectionsReducer
+    })
+});
 
 export const metaReducers: MetaReducer<StoreState>[] = !environment.production ? [] : [];

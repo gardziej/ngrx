@@ -14,7 +14,7 @@ import { MarketComponent } from './components/market/market.component';
 import { RateButtonComponent } from './components/rate-button/rate-button.component';
 import { MatchesService } from './services/matches.service';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './store/reducers';
+import { metaReducers, ROOT_REDUCERS } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -38,7 +38,7 @@ import { MatchComponent } from './components/match/match.component';
     CommonModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers, {
+    StoreModule.forRoot(ROOT_REDUCERS, {
       metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
