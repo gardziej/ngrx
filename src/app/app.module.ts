@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
 import { MatchEffects } from './store/effects/match.effects';
 import { TimeComponent } from './components/time/time.component';
 import { MatchComponent } from './components/match/match.component';
+import { SelectionEffects } from './store/effects/selection.effects';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { MatchComponent } from './components/match/match.component';
         strictActionImmutability: true
       }
     }),
-    EffectsModule.forRoot([MatchEffects]),
+    EffectsModule.forRoot([MatchEffects, SelectionEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 250, logOnly: environment.production })
   ],
   exports: [

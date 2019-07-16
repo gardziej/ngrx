@@ -23,6 +23,7 @@ export class MatchesService {
 
   getLiveMatches() {
     return this.http.get<Match[]>('https://app.lvbet.pl/_api/v1/offer/matches/?is_live=true').pipe(
+      // map((matches: Match[]) => matches.filter((match: Match) => match.id === 7662303))
       // map((matches: Match[]) => matches.filter((match: Match) => match.sportsGroups[0].id === 5))
     );
   }

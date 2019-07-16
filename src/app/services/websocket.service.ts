@@ -20,6 +20,7 @@ import * as MatchActions from '../store/actions/match.actions';
 
 import compare from '../helpers/compare';
 import { MatchesService } from './matches.service';
+import { environment } from 'src/environments/environment';
 
 const isEmpty = (obj) => {
   return Object.keys(obj).length === 0;
@@ -62,7 +63,7 @@ export class WebSocketService {
     }
     this.processNewDataMatch(data, ['isLive', 'isSuspended', 'isVisible', 'marketsCount']);
     this.processNewDataStats(data.stats, ['currentMinute', 'score']);
-    this.processNewDataSelections(data.primaryMarkets, ['rate', 'isSuspended']);
+    this.processNewDataSelections(data.primaryMarkets, ['rate', 'isSuspended', 'isIncreased', 'isDecreased']);
   }
 
   processNewDataMatch(match: Match, props: string[]) {
@@ -70,7 +71,7 @@ export class WebSocketService {
       .pipe(
         select(fromMatches.selectMatch, { id: match.id }),
         map(storedMatch => {
-          if (!storedMatch) {
+          if (!storedMatch && environment.allowNewMatches) {
             this.getNewMatch(match);
           }
           return storedMatch;
@@ -127,6 +128,16 @@ export class WebSocketService {
         filter(storedSelection => !!storedSelection)
       )
       .subscribe(storedSelection => {
+
+        if (storedSelection.rate.decimal === selection.rate.decimal) {
+          selection.isIncreased = storedSelection.isIncreased;
+          selection.isDecreased = storedSelection.isDecreased;
+        }
+        else if (storedSelection.rate.decimal > 0) {
+          selection.isIncreased = storedSelection.rate.decimal < selection.rate.decimal;
+          selection.isDecreased = !selection.isIncreased;
+        }
+
         const changes = this.createChanges(storedSelection, selection, props);
         if (!isEmpty(changes)) {
           this.store.dispatch(SelectionsActions.updateSelection({ selection:

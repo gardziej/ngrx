@@ -57,25 +57,46 @@ ol.sportsGroups li:not(:last-child):after {
   padding: 2px 5px;
   min-width: 70px;
   background-color: #aaaaaa;
+  position: relative;
 }
 
-.rate-button.is-suspended {
-  background-color: #cf6c6c;
+.rate-button .selection-id {
+  font-size: 50%;
 }
 
 .arrow {
+  position: absolute;
   border: solid black;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
+  display: none;
+  animation: blink-animation 1s steps(3, start) infinite;
+}
+
+.rate-button.isIncreased  {
+  background-color: green;
+}
+
+.rate-button.isDecreased  {
+  background-color: red;
+}
+
+.rate-button.isIncreased .arrow.up,
+.rate-button.isDecreased .arrow.down {
+  display: block;
 }
 
 .arrow.up {
+  left: 2px;
+  top: 2px;  
   transform: rotate(-135deg);
   -webkit-transform: rotate(-135deg);
 }
 
 .arrow.down {
+  left: 2px;
+  top: -2px;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
@@ -98,4 +119,10 @@ ol.sportsGroups li:not(:last-child):after {
 
 .isHidden {
   display: none;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }

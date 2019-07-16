@@ -18,6 +18,9 @@ export const selectionsReducer = createReducer(
   }),
   on(SelectionsActions.updateSelection, (state, { selection }) => {
     return adapter.updateOne(selection, state);
+  }),
+  on(SelectionsActions.clearChange, (state, { selection }) => {
+    return adapter.updateOne(selection, state);
   })
 );
 

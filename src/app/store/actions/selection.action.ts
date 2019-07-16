@@ -11,3 +11,8 @@ export const updateSelection = createAction(
   '[Selection] Update Selection',
   (props<{ selection: Update<Selection> }>())
 );
+
+export const clearChange = createAction(
+  '[Selection] Clear Changes in Selection',
+  (props<{ selection: Update<Selection> }>())
+);

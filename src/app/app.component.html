@@ -1,7 +1,7 @@
 <div class="container-fluid" *ngIf="{ matches: matches$ | async } as data">
   <div class="card">
     <div class="card-body">
-      <match *ngFor="let match of data.matches" [id]="match.id"></match>
+      <match *ngFor="let match of data.matches; trackBy: matchTrackBy" [id]="match.id"></match>
     </div>
   </div>
 </div>
