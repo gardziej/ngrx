@@ -126,3 +126,10 @@ ol.sportsGroups li:not(:last-child):after {
     visibility: hidden;
   }
 }
+
+.cd {
+  color: white;
+  background: black;
+  font-size: 8px;
+  padding: 2px;
+}

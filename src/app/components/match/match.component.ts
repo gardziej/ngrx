@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import * as fromMatches from '../../store/reducers/match.reducer';
 
 import { Match } from 'src/app/interfaces/match.interface';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'match',
@@ -13,7 +14,7 @@ import { Match } from 'src/app/interfaces/match.interface';
   styleUrls: ['./match.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MatchComponent implements OnInit {
+export class MatchComponent extends BaseComponent implements OnInit {
 
   public match$: Observable<Match>;
 
@@ -22,6 +23,7 @@ export class MatchComponent implements OnInit {
   constructor(
     private store: Store<StoreState>
     ) {
+      super();
   }
 
   ngOnInit() {

@@ -5,6 +5,7 @@ import * as fromSelections from '../../store/reducers/selection.reducer';
 
 import { Store, select } from '@ngrx/store';
 import { StoreState } from 'src/app/store/reducers';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'rate-button',
@@ -12,7 +13,7 @@ import { StoreState } from 'src/app/store/reducers';
   styleUrls: ['./rate-button.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RateButtonComponent implements OnInit {
+export class RateButtonComponent extends BaseComponent implements OnInit {
 
   public selection$: Observable<any>; // TODO any
 
@@ -21,6 +22,7 @@ export class RateButtonComponent implements OnInit {
   constructor(
     private store: Store<StoreState>
     ) {
+      super();
   }
 
   ngOnInit(): void {

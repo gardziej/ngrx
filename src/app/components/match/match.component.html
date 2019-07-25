@@ -5,6 +5,7 @@
     <div class="col-1 center">
       <span class="badge badge-secondary">{{ data.match.id }}</span>
       <time [id]="data.match.id"></time>
+      <span class="cd">CD: {{ updatedView() }}</span>
     </div>
     <div class="col-1 center">
       <score [id]="data.match.id"></score>

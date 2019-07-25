@@ -5,6 +5,7 @@ import * as fromPrimaryMarkets from '../../store/reducers/primaryMarkets.reducer
 import { Store, select } from '@ngrx/store';
 import { StoreState } from 'src/app/store/reducers';
 import { Observable } from 'rxjs';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'market',
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./market.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MarketComponent implements OnInit {
+export class MarketComponent extends BaseComponent implements OnInit {
 
   public selectionsIds$: Observable<any>;
 
@@ -21,6 +22,7 @@ export class MarketComponent implements OnInit {
   constructor(
     private store: Store<StoreState>
     ) {
+      super();
   }
 
   ngOnInit() {

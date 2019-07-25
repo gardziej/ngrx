@@ -4,6 +4,7 @@ import { StoreState } from 'src/app/store/reducers';
 import * as fromStats from '../../store/reducers/stats.reducer';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'score',
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./score.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ScoreComponent implements OnInit {
+export class ScoreComponent extends BaseComponent implements OnInit {
 
   public score$: Observable<any>;
 
@@ -20,6 +21,7 @@ export class ScoreComponent implements OnInit {
   constructor(
     private store: Store<StoreState>
     ) {
+      super();
   }
 
   ngOnInit(): void {

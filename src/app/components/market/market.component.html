@@ -1,3 +1,4 @@
+<span class="cd">CD: {{ updatedView() }}</span><br>
 <ng-container *ngIf="{ selectionsIds: selectionsIds$ | async } as data">
   <ng-container *ngIf="data.selectionsIds">
     <ng-container *ngFor="let selectionId of data.selectionsIds; let i = index; trackBy: rateButtonsTrackBy">

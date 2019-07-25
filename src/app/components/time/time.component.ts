@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import * as fromStats from '../../store/reducers/stats.reducer';
 import { select, Store } from '@ngrx/store';
 import { StoreState } from 'src/app/store/reducers';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'time',
@@ -11,7 +12,7 @@ import { StoreState } from 'src/app/store/reducers';
   styleUrls: ['./time.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TimeComponent implements OnInit {
+export class TimeComponent extends BaseComponent implements OnInit {
 
   public currentMinute$: Observable<any>;
 
@@ -20,6 +21,7 @@ export class TimeComponent implements OnInit {
   constructor(
     private store: Store<StoreState>
     ) {
+      super();
   }
 
   ngOnInit(): void {
