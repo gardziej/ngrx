@@ -3,9 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as SelectionsActions from '../actions/selection.action';
 
-import { MatchesService } from '../../services/matches.service';
-import { switchMap, map, tap, delay } from 'rxjs/operators';
-import { Match } from '../../interfaces/match.interface';
+import { switchMap, delay } from 'rxjs/operators';
 
 import { Selection } from 'src/app/interfaces/selection.interface';
 import { Update } from '@ngrx/entity';
