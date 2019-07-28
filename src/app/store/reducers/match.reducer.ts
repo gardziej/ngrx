@@ -7,12 +7,12 @@ import * as MatchActions from '../actions/match.actions';
 export interface State extends EntityState<Match> {
 }
 
-const sortByRank = (matchA: Match, matchB: Match) => {
-  return matchB.rank - matchA.rank;
+const sortMatches = (matchA: Match, matchB: Match) => {
+  return matchB.rank - matchA.rank || matchA.id - matchB.id;
 };
 
 export const adapter: EntityAdapter<Match> = createEntityAdapter<Match>({
-  sortComparer: sortByRank
+  sortComparer: sortMatches
 });
 
 export const initialState: State = adapter.getInitialState();
