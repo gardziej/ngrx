@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit, SimpleChanges, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { WebSocketService } from './services/websocket.service';
-import { Match } from './interfaces/match.interface';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { StoreState } from './store/reducers';
@@ -17,7 +16,7 @@ import { BaseComponent } from './components/base/base.component';
 })
 export class AppComponent extends BaseComponent implements OnInit, OnDestroy {
 
-  public matches$: Observable<Match[]>;
+  public matchesIds$: Observable<number[]>;
 
   constructor(
     private webSocketService: WebSocketService,
@@ -28,12 +27,7 @@ export class AppComponent extends BaseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.matches$ = this.store.select(fromMatch.selectAll);
-    this.matches$ = this.store.select(fromMatch.selectAll).pipe(tap(console.log));
-  }
-
-  public matchTrackBy(index: number, item: Match): number {
-    return item.id;
+    this.matchesIds$ = this.store.select(fromMatch.selectIds).pipe(tap(console.log));
   }
 
   ngOnDestroy(): void {
