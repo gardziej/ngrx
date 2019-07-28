@@ -27,7 +27,7 @@ export class SelectionEffects {
       if (data.selection.changes.isDecreased) {
         actionData.changes.isDecreased = false;
       }
-      return [SelectionsActions.clearChange({ selection: actionData })];
+      return actionData.changes ? [SelectionsActions.clearChange({ selection: actionData })] : [];
     })
   ));
 
