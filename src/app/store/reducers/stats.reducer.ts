@@ -42,7 +42,7 @@ export const selectStats = createSelector(
 export const selectScore = createSelector(
   getStatsState,
   (state: State, props: { id: number }) => {
-    return state.entities[props.id] ? state.entities[props.id].score.split(':') : [0, 0];
+    return state.entities[props.id] ? state.entities[props.id].score : null;
   }
 );
 

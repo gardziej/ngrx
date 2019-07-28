@@ -22,6 +22,7 @@ import { MatchEffects } from './store/effects/match.effects';
 import { TimeComponent } from './components/time/time.component';
 import { MatchComponent } from './components/match/match.component';
 import { SelectionEffects } from './store/effects/selection.effects';
+import { ScorePipe } from './pipes/score.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SelectionEffects } from './store/effects/selection.effects';
     ParticipantsComponent,
     MarketComponent,
     MatchComponent,
-    RateButtonComponent
+    RateButtonComponent,
+    ScorePipe
   ],
   imports: [
     BrowserModule,
@@ -48,9 +50,6 @@ import { SelectionEffects } from './store/effects/selection.effects';
     }),
     EffectsModule.forRoot([MatchEffects, SelectionEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 250, logOnly: environment.production })
-  ],
-  exports: [
-    ScoreComponent
   ],
   providers: [
     WebSocketService,

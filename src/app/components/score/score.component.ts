@@ -5,6 +5,7 @@ import * as fromStats from '../../store/reducers/stats.reducer';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { BaseComponent } from '../base/base.component';
+import { eParticipant } from 'src/app/enums/eparticipant.enum';
 
 @Component({
   selector: 'score',
@@ -15,6 +16,7 @@ import { BaseComponent } from '../base/base.component';
 export class ScoreComponent extends BaseComponent implements OnInit {
 
   public score$: Observable<any>;
+  public eParticipant: typeof eParticipant = eParticipant;
 
   @Input() id: number;
 
