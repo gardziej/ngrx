@@ -1,5 +1,5 @@
-<ng-container *ngIf="{ score: score$ | async } as data">
-  <span class="badge badge-primary">{{ data.score | score: eParticipant.Home }}</span>
-  - <span class="badge badge-primary">{{ data.score | score: eParticipant.Away }}</span>
+<ng-container>
+  <span class="badge badge-primary">{{ score | score: eParticipant.Home }}</span>
+  - <span class="badge badge-primary">{{ score | score: eParticipant.Away }}</span>
   <br><span class="cd">CD: {{ updatedView() }}</span>
 </ng-container>

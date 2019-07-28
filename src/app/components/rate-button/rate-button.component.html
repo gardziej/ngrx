@@ -1,18 +1,18 @@
-<ng-container *ngIf="{ selection: selection$ | async } as data">
-  <span 
-    [class.isSuspended]="data.selection?.isSuspended"
-    [class.isIncreased]="data.selection?.isIncreased"
-    [class.isDecreased]="data.selection?.isDecreased"
+<ng-container>
+  <span
+    [class.isSuspended]="selection?.isSuspended"
+    [class.isIncreased]="selection?.isIncreased"
+    [class.isDecreased]="selection?.isDecreased"
     class="rate-button">
 
     <i class="arrow up"></i>
     <i class="arrow down"></i>
 
-    {{ data.selection?.rate.decimal }}
+    {{ selection?.rate.decimal }}
     <br>
-    <span class="selection-id">{{ data.selection?.id }}</span>
+    <span class="selection-id">{{ selection?.id }}</span>
     <br>
     <span class="cd">CD: {{ updatedView() }}</span>
 
-  </span>  
+  </span>
 </ng-container>

@@ -1,11 +1,10 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { WebSocketService } from './services/websocket.service';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { StoreState } from './store/reducers';
 import * as MatchActions from './store/actions/match.actions';
 import * as fromMatch from './store/reducers/match.reducer';
-import { tap } from 'rxjs/operators';
 import { BaseComponent } from './components/base/base.component';
 
 @Component({
@@ -16,18 +15,23 @@ import { BaseComponent } from './components/base/base.component';
 })
 export class AppComponent extends BaseComponent implements OnInit, OnDestroy {
 
-  public matchesIds$: Observable<number[]>;
+  public matchesIds$: Subscription;
+  public matchesIds: string[] | number[];
 
   constructor(
     private webSocketService: WebSocketService,
-    private store: Store<StoreState>
+    private store: Store<StoreState>,
+    private ref: ChangeDetectorRef
     ) {
     super();
     this.store.dispatch(MatchActions.getLiveMatches());
   }
 
   ngOnInit(): void {
-    this.matchesIds$ = this.store.select(fromMatch.selectIds).pipe(tap(console.log));
+    this.matchesIds$ = this.store.select(fromMatch.selectIds).subscribe((value: string[] | number[]) => {
+      this.matchesIds = value;
+      this.ref.detectChanges();
+    });
   }
 
   ngOnDestroy(): void {

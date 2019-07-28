@@ -1,38 +1,38 @@
-<ng-container *ngIf="{ match: match$ | async } as data">
+<ng-container>
   <div
-    [class.isHidden]="!data.match.isVisible || !data.match.isLive"
+    [class.isHidden]="!match.isVisible || !match.isLive"
     class="row">
     <div class="col-1 center">
-      <span class="badge badge-secondary">{{ data.match.id }}</span>
-      <time [id]="data.match.id"></time>
+      <span class="badge badge-secondary">{{ match.id }}</span>
+      <time [id]="match.id"></time>
       <span class="cd">CD: {{ updatedView() }}</span>
     </div>
     <div class="col-1 center">
-      <score [id]="data.match.id"></score>
+      <score [id]="match.id"></score>
     </div>
 
     <div class="col-2">
-      <sportgroups [data]="data.match.sportsGroups"></sportgroups>
-      <participants [data]="data.match.participants"></participants>
+      <sportgroups [data]="match.sportsGroups"></sportgroups>
+      <participants [data]="match.participants"></participants>
     </div>
-    
+
     <div class="col-7">
       <div class="row">
-        <div class="col-4" [class.isSuspended]="data.match.isSuspended">
-          <market *ngIf="data.match.primaryMarketsIds.length > 0" [id]="data.match.primaryMarketsIds[0]"></market>
+        <div class="col-4" [class.isSuspended]="match.isSuspended">
+          <market *ngIf="match.primaryMarketsIds.length > 0" [id]="match.primaryMarketsIds[0]"></market>
         </div>
-        <div class="col-4" [class.isSuspended]="data.match.isSuspended">
-          <market *ngIf="data.match.primaryMarketsIds.length > 1" [id]="data.match.primaryMarketsIds[1]"></market>
+        <div class="col-4" [class.isSuspended]="match.isSuspended">
+          <market *ngIf="match.primaryMarketsIds.length > 1" [id]="match.primaryMarketsIds[1]"></market>
         </div>
-        <div class="col-4" [class.isSuspended]="data.match.isSuspended">
-          <market *ngIf="data.match.primaryMarketsIds.length > 2" [id]="data.match.primaryMarketsIds[2]"></market>
-        </div>        
+        <div class="col-4" [class.isSuspended]="match.isSuspended">
+          <market *ngIf="match.primaryMarketsIds.length > 2" [id]="match.primaryMarketsIds[2]"></market>
+        </div>
       </div>
     </div>
 
     <div class="col-1">
       <div class="rate-button">
-        +{{ data.match.marketsCount }}
+        +{{ match.marketsCount }}
       </div>
     </div>
   </div>

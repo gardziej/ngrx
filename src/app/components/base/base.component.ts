@@ -10,7 +10,6 @@ export class BaseComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('PRG: changes', changes); // TODO remove this
   }
 
 }

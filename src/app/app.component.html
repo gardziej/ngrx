@@ -1,8 +1,8 @@
 <span class="cd">CD: {{ updatedView() }}</span>
-<div class="container-fluid" *ngIf="{ matchesIds: matchesIds$ | async } as data">
+<div class="container-fluid">
   <div class="card">
     <div class="card-body">
-      <match *ngFor="let id of data.matchesIds" [id]="id"></match>
+      <match *ngFor="let id of matchesIds" [id]="id"></match>
     </div>
   </div>
 </div>

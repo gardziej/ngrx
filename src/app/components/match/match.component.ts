@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { StoreState } from 'src/app/store/reducers';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import * as fromMatches from '../../store/reducers/match.reducer';
 
@@ -16,20 +16,23 @@ import { BaseComponent } from '../base/base.component';
 })
 export class MatchComponent extends BaseComponent implements OnInit {
 
-  public match$: Observable<Match>;
+  public match$: Subscription;
+  public match: Match;
 
   @Input() id: number;
 
   constructor(
-    private store: Store<StoreState>
+    private store: Store<StoreState>,
+    private ref: ChangeDetectorRef
     ) {
       super();
   }
 
   ngOnInit() {
-    this.match$ = this.store.pipe(
-      select(fromMatches.selectMatch, { id: this.id })
-    );
+    this.match$ = this.store.select(fromMatches.selectMatch, { id: this.id }).subscribe((value: Match) => {
+      this.match = value;
+      this.ref.detectChanges();
+    });
   }
 
 }

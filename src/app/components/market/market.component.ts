@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 import * as fromPrimaryMarkets from '../../store/reducers/primaryMarkets.reducer';
 
 import { Store, select } from '@ngrx/store';
 import { StoreState } from 'src/app/store/reducers';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { BaseComponent } from '../base/base.component';
 
 @Component({
@@ -15,20 +15,23 @@ import { BaseComponent } from '../base/base.component';
 })
 export class MarketComponent extends BaseComponent implements OnInit {
 
-  public selectionsIds$: Observable<any>;
+  public selectionsIds$: Subscription;
+  public selectionsIds: number[];
 
   @Input() id: number;
 
   constructor(
-    private store: Store<StoreState>
+    private store: Store<StoreState>,
+    private ref: ChangeDetectorRef
     ) {
       super();
   }
 
   ngOnInit() {
-    this.selectionsIds$ = this.store.pipe(
-      select(fromPrimaryMarkets.selectSelectionsIds, { id: this.id })
-    );
+    this.selectionsIds$ = this.store.select(fromPrimaryMarkets.selectSelectionsIds, { id: this.id }).subscribe((value: number[]) => {
+      this.selectionsIds = value;
+      this.ref.detectChanges();
+    });
   }
 
   rateButtonsTrackBy(index: number): number {

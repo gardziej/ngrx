@@ -1,10 +1,10 @@
 <span class="cd">CD: {{ updatedView() }}</span><br>
-<ng-container *ngIf="{ selectionsIds: selectionsIds$ | async } as data">
-  <ng-container *ngIf="data.selectionsIds">
-    <ng-container *ngFor="let selectionId of data.selectionsIds; let i = index; trackBy: rateButtonsTrackBy">
+<ng-container>
+  <ng-container *ngIf="selectionsIds">
+    <ng-container *ngFor="let selectionId of selectionsIds; let i = index; trackBy: rateButtonsTrackBy">
       <div
-        [class.col-d-6]="data.selectionsIds.length === 2"
-        [class.col-d-4]="data.selectionsIds.length === 3">
+        [class.col-d-6]="selectionsIds.length === 2"
+        [class.col-d-4]="selectionsIds.length === 3">
         <rate-button [id]="selectionId"></rate-button>
       </div>
     </ng-container>
